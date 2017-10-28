@@ -5,12 +5,13 @@ using UnityEngine;
 public class DropSpawningSystem : MonoBehaviour
 {
 	[SerializeField]
-	Transform basePlane;
+	Terrain basePlane;
 
 	[SerializeField]
 	float distanceFromBase = 9.0f;
 
-	float spawnVariantRange = 2.0f;
+	[SerializeField]
+	float spawnVariantRange = 18.0f;
 
 	[SerializeField]
 	List<Drop> dropPrefabs;
@@ -23,9 +24,15 @@ public class DropSpawningSystem : MonoBehaviour
 
 	public int spawnCountPerIteration = 2;
 
+	private float resolution;
+
 	private void Awake ()
 	{
-		transform.position = basePlane.transform.position + Vector3.up * distanceFromBase;
+		resolution = basePlane.terrainData.size.z / 2;
+		
+		transform.position = new Vector3 (0, 
+			resolution + distanceFromBase, 
+			resolution);
 	}
 
 	private void Start ()
@@ -39,7 +46,9 @@ public class DropSpawningSystem : MonoBehaviour
 
 			var randomPrefab = dropPrefabs [Random.Range (0, dropPrefabs.Count)];
 
-			var spawnPos = Random.Range (-spawnVariantRange, spawnVariantRange) * Vector3.up + transform.position;
+			var spawnPos = transform.position +
+			               Vector3.right * Random.Range (-resolution, resolution) +
+			               Vector3.up * Random.Range (-spawnVariantRange, spawnVariantRange);
 
 			Instantiate (randomPrefab, spawnPos, Quaternion.identity, transform);
 		}
