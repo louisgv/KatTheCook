@@ -32,7 +32,7 @@ An AR game for HeroJam. Where you catch fish and fry them and feed it to cat.
  
 - Ash : SetUp
 - Louis : Game Play Spawner, Collision 
-- Stone : Model Cat
+- Stone : Texture Cat
 - Kush : Docs 
 - Dennis : Model Fish
 
