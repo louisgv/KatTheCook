@@ -29,7 +29,7 @@ public class DropSpawningSystem : MonoBehaviour
 
 	private void Awake ()
 	{
-        transform.position = basePlane.transform.position + basePlane.transform.up * distanceFromBase;
+        //transform.position = basePlane.transform.position + basePlane.transform.up * distanceFromBase;
 	}
 
 	private void Start ()
