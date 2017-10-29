@@ -37,10 +37,10 @@ public class DropSpawningSystem : MonoBehaviour
 
 			var randomPrefab = dropPrefabs [Random.Range (0, dropPrefabs.Count)];
 
-			var spawnPos = transform.position +
+			var spawnPos = basePlane.position +
                            Vector3.forward * Random.Range(-resolution.z, resolution.z) +
 			               Vector3.right * Random.Range (-resolution.x, resolution.x) +
-			               Vector3.up * Random.Range (-resolution.y, resolution.y);
+			               Vector3.up * Random.Range (0, resolution.y);
 
 			Instantiate (randomPrefab, spawnPos, Quaternion.identity, transform);
 		}
