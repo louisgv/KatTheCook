@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="qrcode" size="5.000000 5.000000" />
+    <ImageTarget name="repoQR" size="5.000000 5.000000" />
     <ImageTarget name="Pikachu" size="5.000000 2.816667" />
     <ImageTarget name="ash-ketchum-192847" size="10.000000 5.618320" />
     <ImageTarget name="Surface" size="10.000000 5.630000" />

@@ -30,9 +30,9 @@ public class DropSpawningSystem : MonoBehaviour
 	{
 		resolution = basePlane.terrainData.size.z / 2;
 		
-		transform.position = new Vector3 (0, 
-			resolution + distanceFromBase, 
-			resolution);
+		//transform.position = new Vector3 (0, 
+		//	resolution + distanceFromBase, 
+		//	resolution);
 	}
 
 	private void Start ()

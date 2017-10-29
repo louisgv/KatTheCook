@@ -44,4 +44,12 @@ public class Drop : MonoBehaviour
 //			audioSource.Play ();
 	}
 
+    void Update()
+    {
+        if( transform.position.y < -9999)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
