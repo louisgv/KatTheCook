@@ -5,7 +5,7 @@ using UnityEngine;
 public class DropSpawningSystem : MonoBehaviour
 {
 	[SerializeField]
-	Terrain basePlane;
+	Transform basePlane;
 
 	[SerializeField]
 	float distanceFromBase = 9.0f;
@@ -24,15 +24,12 @@ public class DropSpawningSystem : MonoBehaviour
 
 	public int spawnCountPerIteration = 2;
 
-	private float resolution;
+    [SerializeField]
+	private float resolution = 9.0f;
 
 	private void Awake ()
 	{
-		resolution = basePlane.terrainData.size.z / 2;
-		
-		//transform.position = new Vector3 (0, 
-		//	resolution + distanceFromBase, 
-		//	resolution);
+        transform.position = basePlane.transform.position + basePlane.transform.up * distanceFromBase;
 	}
 
 	private void Start ()
