@@ -8,7 +8,18 @@ public class Cat : MonoBehaviour
 
     public Transform rightAnchor;
 
+    public Avatar jumpAvatar;
+
+    public Avatar stayAvatar;
+
+    Animator animator;
+
     bool isLeftAnchor = true;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public IEnumerator JumpToward(Transform dropTransform)
     {
@@ -20,6 +31,8 @@ public class Cat : MonoBehaviour
 
         ScoreManager.score++;
 
+        animator.avatar = jumpAvatar;
+
         yield return new WaitForSeconds(5f);
 
         if (isLeftAnchor)
@@ -30,5 +43,7 @@ public class Cat : MonoBehaviour
         {
             transform.position = rightAnchor.position;
         }
+
+        animator.avatar = stayAvatar;
     }
 }
