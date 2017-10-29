@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,16 @@ public class Drop : MonoBehaviour
 
 	public float explosionTime = 5.0f;
 
-	IEnumerator WaitThenExplode ()
+    Cat cat;
+    new Rigidbody rigidbody;
+
+    private void Awake()
+    {
+        cat = GameObject.FindGameObjectWithTag(Tags.CAT).GetComponent<Cat>();
+        rigidbody = GetComponent<Rigidbody>();
+    }
+
+    IEnumerator WaitThenExplode ()
 	{
 		yield return new WaitForSeconds (explosionWaitTime);
 
@@ -35,14 +45,42 @@ public class Drop : MonoBehaviour
 
 			if (contact.otherCollider.CompareTag (Tags.SURFACE)) {
 				collided = true;
-				StartCoroutine (WaitThenExplode ());
+                ScoreManager.score --;
+
+                StartCoroutine(WaitThenExplode ());
 				break;
 			}
-		}
+
+            if (contact.otherCollider.CompareTag(Tags.CATCHER))
+            {
+                collided = true;
+                ScoreManager.score++;
+
+                StartCoroutine(WaitThenJumpUp());
+                break;
+            }
+        }
 
 //		if (collision.relativeVelocity.magnitude > 2)
 //			audioSource.Play ();
 	}
+
+    private void PopUp()
+    {
+        rigidbody.AddForce(Vector3.up * 900.0f, ForceMode.Force);
+    }
+
+    private IEnumerator WaitThenJumpUp()
+    {
+        yield return new WaitForSeconds(explosionWaitTime);
+
+        Debug.Log("POPPING DAWG");
+        PopUp();
+
+        yield return new WaitForSeconds(explosionWaitTime);
+
+        StartCoroutine(cat.JumpToward(transform));
+    }
 
     void Update()
     {

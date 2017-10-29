@@ -8,12 +8,6 @@ public class DropSpawningSystem : MonoBehaviour
 	Transform basePlane;
 
 	[SerializeField]
-	float distanceFromBase = 9.0f;
-
-	[SerializeField]
-	float spawnVariantRange = 18.0f;
-
-	[SerializeField]
 	List<Drop> dropPrefabs;
 
 	[SerializeField]
@@ -25,7 +19,7 @@ public class DropSpawningSystem : MonoBehaviour
 	public int spawnCountPerIteration = 2;
 
     [SerializeField]
-	private float resolution = 9.0f;
+	private Vector3 resolution = new Vector3(18.0f, 9.0f, 18.0f);
 
 	private void Awake ()
 	{
@@ -44,8 +38,9 @@ public class DropSpawningSystem : MonoBehaviour
 			var randomPrefab = dropPrefabs [Random.Range (0, dropPrefabs.Count)];
 
 			var spawnPos = transform.position +
-			               Vector3.right * Random.Range (-resolution, resolution) +
-			               Vector3.up * Random.Range (-spawnVariantRange, spawnVariantRange);
+                           Vector3.forward * Random.Range(-resolution.z, resolution.z) +
+			               Vector3.right * Random.Range (-resolution.x, resolution.x) +
+			               Vector3.up * Random.Range (-resolution.y, resolution.y);
 
 			Instantiate (randomPrefab, spawnPos, Quaternion.identity, transform);
 		}

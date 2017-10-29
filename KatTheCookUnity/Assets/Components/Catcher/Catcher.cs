@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class Catcher : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    Cat cat;
+
+    public GameObject sizzlingEffect;
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (!sizzlingEffect.activeSelf)
+        {
+            sizzlingEffect.SetActive(true);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (sizzlingEffect.activeSelf)
+        {
+            sizzlingEffect.SetActive(false);
+        }
+    }
 }
